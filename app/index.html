@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基于 Serverless 图像转换为宫崎骏动漫风格案例</title>
+    <link href="https://www.bootcss.com/p/layoutit/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script>
+        var image = undefined
+        var uri = '/predict/animegan_v2_hayao_99'
+        var appName = 'paddleImageStyleTransfer'
+
+        function getSentence() {
+            document.getElementById("result").innerText = "预测中 ..."
+            const xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttp.open("POST", uri, false);
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    res = JSON.parse(xmlhttp.responseText);
+                    document.getElementById("result").src = "data:image/png;base64,"+res.results[0];
+                }
+            }
+            xmlhttp.setRequestHeader("Content-type", "application/json");
+            image = image.substring( image.indexOf( "," ) + 1 );
+            data = '{"images":["' + image + '"]}'
+            xmlhttp.send(data);
+        }
+
+        function getImage(file) {
+            const reader = new FileReader();
+            const img = document.getElementById('img');
+
+            //读取File对象的数据
+            reader.onload = function (evt) {
+                img.src = evt.target.result;
+                image = evt.target.result
+            }
+            reader.readAsDataURL(file.files[0]);
+        }
+    </script>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 10px">
+    <div class="row-fluid">
+        <div class="span12">
+            <center>
+                <h3>
+                    基于 Serverless 图像转换为宫崎骏动漫风格案例
+                </h3>
+            </center>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2">
+        </div>
+        <div class="span8">
+            <fieldset>
+                <legend>说明：</legend>
+                本应用基于 Serverless Devs 进行部署，可通过 <a id="appUrl">Serverless 应用中心一键体验</a>。
+                <br>
+                <br>
+                本应用的使用帮助<a href="https://github.com/duolabmeng6/paddleImageStyleTransfer">基于 Serverless 图像转换为宫崎骏动漫风格案例图像转换为宫崎骏动漫风格案例</a>
+                <br><h5>接口文档：</h5>
+                <p>地址：：</p>
+                <pre id="url"></pre>
+                <p>参数：</p>
+                <pre id="args"></pre>
+                <p>案例：</p>
+                <pre id="example"></pre>
+            </fieldset>
+        </div>
+        <div class="span2">
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2">
+        </div>
+        <div class="span8">
+            <center style="width: 100%">
+                <img style="width: 45%" src="" id="img"/>
+                <img style="width: 45%" src="" id="result"/>
+            </center>
+            <fieldset>
+                <legend id="action">体验：</legend>
+                <input type="file" id="upload" onchange="getImage(this)"/>
+                <button class="btn" onclick="getSentence()">图像预测</button>
+            </fieldset>
+
+        </div>
+        <div class="span2">
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("appUrl").href = "https://fcnext.console.aliyun.com/applications/create?template=" + appName
+    document.getElementById("url").innerText = window.location.protocol + '//' + window.location.host + uri
+    document.getElementById("args").innerText = `  Headers:
+     Content-type: application/json
+  Body:
+     image: 图片Base64后的字符串`
+    document.getElementById("example").innerText = `import requests
+import json
+import cv2
+import base64
+
+def cv2_to_base64(image):
+  data = cv2.imencode('.jpg', image)[1]
+  return base64.b64encode(data.tostring()).decode('utf8')
+
+def getResult(imagePath):
+    data = json.dumps({'images': [cv2_to_base64(cv2.imread(imagePath))]})
+    r = requests.post("${window.location.protocol + '//' + window.location.host + uri}", data=data,
+                        headers={'Content-Type': 'application/json'})
+    return r.json()["results"]
+print(getResult("./test.png"))`
+
+</script>
+</body>
+</html>
