@@ -31,7 +31,7 @@ services:
         codeUri: ./
         timeout: 60
         customContainerConfig:
-          image: registry-vpc.${vars.region}.aliyuncs.com/duolabmeng/animegan_v2_hayao_99:1.0
+          image: registry-vpc.${vars.region}.aliyuncs.com/duolabmeng/animegan_v2_hayao_99:1.1
           command: '["sh","/app/start.sh"]'
         environmentVariables:
           testEnv: true
