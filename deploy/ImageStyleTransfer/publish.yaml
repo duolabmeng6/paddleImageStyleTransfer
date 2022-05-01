@@ -11,7 +11,7 @@ Type: Application
 Name: paddleImageStyleTransfer
 Provider:
   - 阿里云
-Version: 0.0.28
+Version: 0.0.29
 Description: 本应用基于百度开源的 PaddlePaddle 项目，AnimeGAN V2 图像风格转换模型, 可将输入的图像转换成宫崎骏动漫风格。
 HomePage: https://github.com/duolabmeng6/paddleImageStyleTransfer
 Tags: #标签详情
