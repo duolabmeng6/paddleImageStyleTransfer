@@ -7,7 +7,7 @@ vars:
   memorySize: "{{ memorySize }}"
   service:
     name: "{{ serviceName }}"
-    description: '图像转换成宫崎骏动漫风格API 项目地址 https://github.com/duolabmeng6/paddleImageStyleTransfer'
+    description: '图像转换成宫崎骏动漫风格API 项目地址 https://github.com/duolabmeng6/paddlePyramidBox'
 
 services:
   framework:
@@ -31,7 +31,7 @@ services:
         codeUri: ./
         timeout: 60
         customContainerConfig:
-          image: registry-vpc.${vars.region}.aliyuncs.com/duolabmeng/animegan_v2_hayao_99:1.1
+          image: registry-vpc.${vars.region}.aliyuncs.com/duolabmeng/pyramidbox_lite_mobile:1.0
           command: '["sh","/app/start.sh"]'
         environmentVariables:
           testEnv: true

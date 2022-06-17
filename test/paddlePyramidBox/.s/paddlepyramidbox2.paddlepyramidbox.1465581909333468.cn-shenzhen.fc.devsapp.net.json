@@ -1,0 +1,34 @@
+{
+  "domainName": "paddlepyramidbox2.paddlepyramidbox.1465581909333468.cn-shenzhen.fc.devsapp.net",
+  "accountId": "1465581909333468",
+  "protocol": "HTTP",
+  "certConfig": {
+    "certName": null,
+    "privateKey": null,
+    "certificate": null
+  },
+  "tlsConfig": {
+    "minVersion": null,
+    "maxVersion": null,
+    "cipherSuites": null
+  },
+  "apiVersion": "2016-08-15",
+  "routeConfig": {
+    "routes": [
+      {
+        "path": "/*",
+        "accountId": null,
+        "serviceName": "paddlePyramidBox",
+        "functionName": "paddlePyramidBox2",
+        "qualifier": null,
+        "methods": [
+          "GET",
+          "POST",
+          "PUT"
+        ]
+      }
+    ]
+  },
+  "createdTime": "2022-06-17T03:34:33Z",
+  "lastModifiedTime": "2022-06-17T03:34:33Z"
+}

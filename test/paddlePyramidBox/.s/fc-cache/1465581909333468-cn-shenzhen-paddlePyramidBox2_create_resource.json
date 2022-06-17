@@ -1,0 +1,9 @@
+{
+  "serviceName": "paddlePyramidBox2",
+  "functionNames": [
+    "paddlePyramidBox2/paddlePyramidBox"
+  ],
+  "domains": [
+    "paddlepyramidbox.paddlepyramidbox2.1465581909333468.cn-shenzhen.fc.devsapp.net"
+  ]
+}

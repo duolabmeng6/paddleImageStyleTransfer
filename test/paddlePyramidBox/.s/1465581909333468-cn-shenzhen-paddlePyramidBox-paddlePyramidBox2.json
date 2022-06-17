@@ -1,0 +1,51 @@
+{
+  "statefulConfig": {
+    "functionId": "ed6e2705-9c5c-4ad4-8cfe-7e408b00c581",
+    "functionName": "paddlePyramidBox2",
+    "description": "图像转换成宫崎骏动漫风格API 项目地址 https://github.com/duolabmeng6/paddlePyramidBox",
+    "runtime": "custom-container",
+    "handler": "index.handler",
+    "timeout": 60,
+    "initializer": "",
+    "initializationTimeout": 3,
+    "codeSize": 0,
+    "codeChecksum": "",
+    "memorySize": 1024,
+    "gpuMemorySize": null,
+    "environmentVariables": {
+      "testEnv": "true"
+    },
+    "createdTime": "2022-06-17T03:34:22Z",
+    "lastModifiedTime": "2022-06-17T03:34:22Z",
+    "instanceConcurrency": 1,
+    "instanceSoftConcurrency": null,
+    "customContainerConfig": {
+      "image": "registry-vpc.cn-shenzhen.aliyuncs.com/duolabmeng/pyramidbox_lite_mobile:1.2",
+      "command": "[\"sh\",\"/app/start.sh\"]",
+      "args": null,
+      "accelerationType": "Default",
+      "imageAcclConfig": null,
+      "accelerationInfo": {
+        "status": "Preparing"
+      },
+      "instanceID": null,
+      "instancePrivateDNS": null
+    },
+    "caPort": 9000,
+    "instanceType": "e1",
+    "layers": null,
+    "instanceLifecycleConfig": {
+      "preFreeze": {
+        "handler": "",
+        "timeout": 3
+      },
+      "preStop": {
+        "handler": "",
+        "timeout": 3
+      }
+    },
+    "customDNS": null,
+    "customRuntimeConfig": null,
+    "name": "paddlePyramidBox2"
+  }
+}

@@ -1,4 +1,4 @@
-# 基于 Serverless 图像转换为宫崎骏动漫风格案例
+# 基于 Serverless 人脸关键点检测
 
 大家可以通过本项目提供的镜像，快速发布成可调用的Restful API服务。
 
@@ -6,14 +6,14 @@
 
 # 1. 在阿里云函数计算应用中心里立即创建
 
-[阿里云Serverless 应用中心一键体验 ](https://fcnext.console.aliyun.com/applications/create?template=paddleImageStyleTransfer)
+[阿里云Serverless 应用中心一键体验 ](https://fcnext.console.aliyun.com/applications/create?template=paddlePyramidBox)
 
 
 # 2. 终端上输入命令创建
 
 ```shell
 
-s init paddleImageStyleTransfer  # 初始化项目
+s init paddlePyramidBox  # 初始化项目
 s deploy  # 部署项目
 
 ```
@@ -34,7 +34,7 @@ def cv2_to_base64(image):
 
 def getResult(imagePath):
     data = json.dumps({'images': [cv2_to_base64(cv2.imread(imagePath))]})
-    r = requests.post("http://127.0.0.1:9000/predict/animegan_v2_hayao_99", data=data,
+    r = requests.post("http://127.0.0.1:9000/predict/pyramidbox_lite_mobile", data=data,
                       headers={'Content-Type': 'application/json'})
     return r.json()["results"]
 

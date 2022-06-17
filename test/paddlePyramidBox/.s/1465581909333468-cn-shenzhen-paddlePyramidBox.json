@@ -1,0 +1,37 @@
+{
+  "statefulConfig": {
+    "serviceName": "paddlePyramidBox",
+    "description": "图像转换成宫崎骏动漫风格API 项目地址 https://github.com/duolabmeng6/paddlePyramidBox",
+    "role": "acs:ram::1465581909333468:role/paddlerole",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "d39fda79-cae4-460a-86f0-0a6e0ccc9bc6",
+    "createdTime": "2022-06-17T03:20:48Z",
+    "lastModifiedTime": "2022-06-17T03:34:23Z",
+    "vpcConfig": {
+      "vpcId": "",
+      "vSwitchIds": [],
+      "securityGroupId": "",
+      "role": "",
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": -1,
+      "groupId": -1,
+      "mountPoints": []
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "paddlePyramidBox"
+  }
+}

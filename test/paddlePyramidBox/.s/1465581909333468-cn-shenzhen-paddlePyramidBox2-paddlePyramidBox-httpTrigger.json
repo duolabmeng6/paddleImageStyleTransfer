@@ -1,0 +1,24 @@
+{
+  "statefulConfig": {
+    "triggerName": "httpTrigger",
+    "description": "",
+    "triggerId": "39e66e89-4a9f-44a3-b55f-b989cf49e834",
+    "sourceArn": null,
+    "triggerType": "http",
+    "invocationRole": null,
+    "qualifier": null,
+    "urlInternet": "https://paddlepramidbox-paddlepramidbox-egxsoombip.cn-shenzhen.fcapp.run",
+    "urlIntranet": "https://paddlepramidbox-paddlepramidbox-egxsoombip.cn-shenzhen-vpc.fcapp.run",
+    "triggerConfig": {
+      "methods": [
+        "GET",
+        "POST",
+        "PUT"
+      ],
+      "authType": "anonymous"
+    },
+    "createdTime": "2022-06-17T03:27:37Z",
+    "lastModifiedTime": "2022-06-17T03:27:37Z",
+    "name": "httpTrigger"
+  }
+}

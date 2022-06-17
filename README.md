@@ -1,52 +1,27 @@
-# 基于 Serverless 图像转换为宫崎骏动漫风格案例
+# 基于 Serverless 人脸关键点检测
 
 大家可以通过本项目提供的镜像，快速发布成可调用的Restful API服务。
-
-# animegan_v2_hayao_99
-
-[使用模型 animegan_v2_hayao_99](https://github.com/PaddlePaddle/PaddleHub/tree/release/v2.2/modules/image/Image_gan/style_transfer/animegan_v2_hayao_99)
-
-|模型名称|animegan_v2_hayao_99|
-| :--- | :---: |
-|类别|图像 - 图像生成|
-|网络|AnimeGAN|
-|数据集|The Wind Rises|
-|是否支持Fine-tuning|否|
-|模型大小|9.4MB|
-|最新更新日期|2021-07-30|
-|数据指标|-|
 
 ## 一、模型基本信息
 
 - ### 应用效果展示
-  - 样例结果示例：
-    <p align="center">
-    <img src="./test.png"  width = "450" height = "300" hspace='10'/>
-    <br />
-    输入图像
-    <br />
-    <img src="result.png"  width = "450" height = "300" hspace='10'/>
-    <br />
-    输出图像
-     <br />
-    </p>
 
 
 - ### 模型介绍
 
-  - AnimeGAN V2 图像风格转换模型, 模型可将输入的图像转换成宫崎骏动漫风格，模型权重转换自[AnimeGAN V2官方开源项目](https://github.com/TachibanaYoshino/AnimeGANv2)。
+PyramidBox-Lite是基于2018年百度发表于计算机视觉顶级会议ECCV 2018的论文PyramidBox而研发的轻量级模型，模型基于主干网络FaceBoxes，对于光照、口罩遮挡、表情变化、尺度变化等常见问题具有很强的鲁棒性。该PaddleHub Module是针对于移动端优化过的模型，适合部署于移动端或者边缘检测等算力受限的设备上，并基于WIDER FACE数据集和百度自采人脸数据集进行训练，支持预测，可用于人脸检测。
 
 # 部署方法
 
 # 1. 在阿里云函数计算应用中心里立即创建
 
-[阿里云Serverless 应用中心一键体验 ](https://fcnext.console.aliyun.com/applications/create?template=paddleImageStyleTransfer)
+[阿里云Serverless 应用中心一键体验 ](https://fcnext.console.aliyun.com/applications/create?template=paddlePyramidBox)
 
 # 2. 终端上输入命令创建
 
 ```shell
 
-s init paddleImageStyleTransfer  # 初始化项目
+s init paddlePyramidBox  # 初始化项目
 s deploy  # 部署项目
 
 ```
@@ -67,22 +42,13 @@ def cv2_to_base64(image):
 
 def getResult(imagePath):
     data = json.dumps({'images': [cv2_to_base64(cv2.imread(imagePath))]})
-    r = requests.post("http://127.0.0.1:9000/predict/animegan_v2_hayao_99", data=data,
+    r = requests.post("http://127.0.0.1:9000/predict/pyramidbox_lite_mobile", data=data,
                       headers={'Content-Type': 'application/json'})
     return r.json()["results"]
 
 
 print(getResult("./test.png"))
 ```
-
-# 调用失败的请看这里
-
-* 500x300 分辨率 需要 7秒   2.6gb内存 所以函数设置 3gb 运行内存才可以
-* 720x500 分辨率 需要 15秒  5.76gb内存 所以函数设置 8gb 运行内存才可以
-* 2000x1280 分辨率 需要 30秒 6.77g内存 所以设置 8gb 运行内存才可以
-
-我是直接设置了16gb内存测试的
-
 
 # 本应用的镜像开发教程
 
@@ -102,6 +68,6 @@ s cli registry login # 登录授权 一次就行
 s cli registry publish # 发布包
 s cli registry list # 查看子机已发布的包
 
-s init paddleImageStyleTransfer # 自己测试应用的效果
+s init paddlePyramidBox # 自己测试应用的效果
 s deploy # 部署项目试试
 ```

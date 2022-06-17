@@ -1,0 +1,51 @@
+edition: 1.0.0
+name: web-framework-app
+access: "df1"
+
+vars:
+  region: "cn-shenzhen"
+  memorySize: "1024"
+  service:
+    name: "paddlePyramidBox"
+    description: '图像转换成宫崎骏动漫风格API 项目地址 https://github.com/duolabmeng6/paddlePyramidBox'
+
+services:
+  framework:
+    component: fc
+    props:
+      region: ${vars.region}
+      service:
+        name: ${vars.service.name}
+        description: ${vars.service.description}
+        internetAccess: true
+        role:
+          name: paddlerole
+          policies:
+            - AliyunContainerRegistryReadOnlyAccess
+      function:
+        name: "paddlePyramidBox2"
+        description: ${vars.service.description}
+        runtime: custom-container
+        memorySize: ${vars.memorySize}
+        caPort: 9000
+        codeUri: ./
+        timeout: 60
+        customContainerConfig:
+          image: registry-vpc.${vars.region}.aliyuncs.com/duolabmeng/pyramidbox_lite_mobile:1.2
+          command: '["sh","/app/start.sh"]'
+        environmentVariables:
+          testEnv: true
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*

@@ -11,7 +11,7 @@ def cv2_to_base64(image):
 
 def getResult(imagePath):
     data = json.dumps({'images': [cv2_to_base64(cv2.imread(imagePath))]})
-    r = requests.post("http://127.0.0.1:9000/predict/animegan_v2_hayao_99", data=data,
+    r = requests.post("http://127.0.0.1:9000/predict/pyramidbox_lite_mobile", data=data,
                       headers={'Content-Type': 'application/json'})
     return r.json()["results"]
 

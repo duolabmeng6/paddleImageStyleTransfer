@@ -1,2 +1,2 @@
 #!/bin/bash
-hub serving start -m animegan_v2_hayao_99 -p 9000
+hub serving start -m pyramidbox_lite_mobile -p 9000
